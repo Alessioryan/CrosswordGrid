@@ -1,0 +1,13 @@
+====================There are 2 grids====================
+[p a b s t]
+[a l l a y]
+[s l u r p]
+[t i n g e]
+[a n t e s]
+
+[p a s t a]
+[a l l i n]
+[b l u n t]
+[s a r g e]
+[t y p e s]
+

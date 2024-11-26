@@ -149,8 +149,9 @@ class Grid:
         if len(self.completed_grids) == max_completed_grids:
             return
         if self.entry_index == len(self.entry_order):
-            # print(f"Found completed grid: \n{_make_grid_readable(self.grid)} ")
             self.completed_grids.append(self.grid.copy() )
+            if self.verbose['Print when found grid']:
+                print(f"Found grid. \n{_make_grid_readable(self.grid.copy() )}")
             return
         # Get the current index and direction for the unsuccessful exit condition
         curr_i_dir = self.get_curr_i_dir()
@@ -183,7 +184,7 @@ class Grid:
     def _get_completed_grids_output(self):
         output = [f"====================There are {len(self.completed_grids)} grids====================\n"]
         for completed_grid in self.completed_grids:
-            output.append(_make_grid_readable(completed_grid) + "\n")
+            output.append(_make_grid_readable(completed_grid) + "\n\n")
         return output
 
     # Print out the completed grids
@@ -208,10 +209,10 @@ class Grid:
 
 
 if __name__ == "__main__":
-    straights = [("blunt", "2-a"), ("allay", "1-d")]
-    dict_name = "small_5_dict.txt"
+    straights = [("wordy", "1-d")]
+    dict_name = "wordle_small_5_dict.txt"
     test_grid = Grid(main_dict_fp=os.path.join("dictionaries", dict_name), grid_size=5)
-    test_grid.verbose['Print compatible words'] = True
+    test_grid.verbose['Print when found grid'] = True
     test_grid.manually_set_straights(straights=straights)
-    test_grid.fill_grid()
+    test_grid.fill_grid(max_completed_grids=1)
     test_grid.save_completed_grids(file_name=(straights, dict_name), print_grids=True)
